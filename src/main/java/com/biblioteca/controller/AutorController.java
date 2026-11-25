@@ -10,16 +10,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+// Controla o cadastro, a lista e a exclusão de autores.
 @Controller
 @RequestMapping("/autores")
 public class AutorController {
 
+    // Usado para acessar os autores salvos no banco.
     private final AutorRepository autorRepository;
 
     public AutorController(AutorRepository autorRepository) {
         this.autorRepository = autorRepository;
     }
 
+    // Abre o formulário e carrega os autores cadastrados.
     @GetMapping({"", "/novo"})
     public String listar(Model model) {
         model.addAttribute("autor", new Autor());
@@ -27,12 +30,14 @@ public class AutorController {
         return "autores/form";
     }
 
+    // Salva o autor e volta para a lista.
     @PostMapping
     public String cadastrarAutor(@ModelAttribute("autor") Autor autor) {
         autorRepository.save(autor);
         return "redirect:/autores";
     }
 
+    // Exclui o autor pelo ID e volta para a lista.
     @GetMapping("/excluir/{id}")
     public String excluir(@PathVariable Long id) {
         autorRepository.deleteById(id);

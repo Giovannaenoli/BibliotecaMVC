@@ -5,13 +5,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+// Representa um autor e seus dados no banco.
 @Entity
 public class Autor {
 
+    // O banco cria um ID para identificar cada autor.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Informações do autor.
     private String nome;
     private String nacionalidade;
     private String obrasPublicadas;

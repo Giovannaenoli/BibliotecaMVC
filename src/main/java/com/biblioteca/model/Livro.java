@@ -5,13 +5,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+// Representa um livro e seus dados no banco.
 @Entity
 public class Livro {
 
+    // O banco cria um ID para identificar cada livro.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Informações do livro.
     private String titulo;
     private String autor;
     private String isbn;

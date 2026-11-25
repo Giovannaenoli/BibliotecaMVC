@@ -5,13 +5,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+// Representa uma categoria e seus dados no banco.
 @Entity
 public class Categoria {
 
+    // O banco cria um ID para identificar cada categoria.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Informações da categoria.
     private String nome;
     private String descricao;
 
