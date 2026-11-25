@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Categoria cadastrada | Biblioteca</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+    <main>
+        <h1>Categoria cadastrada!</h1>
+        <p>Confira os dados recebidos:</p>
+
+        <p><strong>Nome:</strong> <span th:text="${categoria.nome}"></span></p>
+        <p><strong>Descrição:</strong> <span th:text="${categoria.descricao}"></span></p>
+
+        <nav aria-label="Opções após o cadastro">
+            <a th:href="@{/categorias/novo}">Cadastrar outra categoria</a>
+            <a th:href="@{/livros}">Voltar ao início</a>
+        </nav>
+    </main>
+</body>
+</html>

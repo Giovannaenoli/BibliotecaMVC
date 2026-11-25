@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Categorias | Biblioteca</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+    <main>
+        <a th:href="@{/livros}">Voltar ao início</a>
+        <h1>Cadastrar categoria</h1>
+        <p>Informe os dados da categoria.</p>
+
+        <form th:object="${categoria}" th:action="@{/categorias}" method="post">
+            <label for="nome">Nome</label>
+            <input id="nome" type="text" th:field="*{nome}">
+
+            <label for="descricao">Descrição</label>
+            <input id="descricao" type="text" th:field="*{descricao}">
+
+            <button type="submit">Cadastrar</button>
+        </form>
+
+        <h2>Categorias cadastradas</h2>
+        <p th:if="${#lists.isEmpty(categorias)}">Nenhuma categoria cadastrada ainda.</p>
+        <table th:if="${!#lists.isEmpty(categorias)}">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="categoria : ${categorias}">
+                    <td th:text="${categoria.nome}"></td>
+                    <td th:text="${categoria.descricao}"></td>
+                    <td><a th:href="@{/categorias/excluir/{id}(id=${categoria.id})}">Excluir</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
