@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cadastrar livro | Biblioteca</title>
+    <title th:text="${livro.id == null} ? 'Cadastrar livro | Biblioteca' : 'Editar livro | Biblioteca'">Cadastrar livro | Biblioteca</title>
     <link rel="stylesheet" th:href="@{/css/estilo.css}">
 </head>
 <body>
     <main>
         <a th:href="@{/livros}">Voltar ao início</a>
-        <h1>Cadastrar livro</h1>
-        <p>Informe os dados do livro.</p>
+        <h1 th:text="${livro.id == null} ? 'Cadastrar livro' : 'Editar livro'">Cadastrar livro</h1>
+        <p th:text="${livro.id == null} ? 'Informe os dados do livro.' : 'Altere os dados do livro.'">Informe os dados do livro.</p>
 
         <form th:object="${livro}" th:action="@{/livros}" method="post">
+            <input type="hidden" th:field="*{id}">
             <label for="titulo">Título</label>
             <input id="titulo" type="text" th:field="*{titulo}">
 
@@ -24,7 +25,7 @@
 
             <label for="anoPublicacao">Ano de publicação</label>
             <input id="anoPublicacao" type="number" th:field="*{anoPublicacao}">
-            <button type="submit">Cadastrar</button>
+            <button type="submit" th:text="${livro.id == null} ? 'Cadastrar' : 'Salvar alterações'">Cadastrar</button>
         </form>
     </main>
 </body>

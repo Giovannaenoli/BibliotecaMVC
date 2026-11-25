@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Biblioteca</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+    <main>
+        <h1 th:text="'Sistema de Biblioteca'">Sistema de Biblioteca</h1>
+        <p>Bem-vindo ao Sistema de Biblioteca!</p>
+
+        <nav aria-label="Menu principal">
+            <a th:href="@{/livros}">Livros</a>
+            <a th:href="@{/autores/novo}">Autores</a>
+            <a th:href="@{/categorias/novo}">Categorias</a>
+            <a th:href="@{/usuarios}">Usuários</a>
+            <a th:href="@{/emprestimos}">Empréstimos</a>
+        </nav>
+
+        <h2>Livros</h2>
+        <ul>
+            <li><a th:href="@{/livros/novo}">Cadastrar livro</a></li>
+            <li><a th:href="@{/livro}">Ver livro de exemplo</a></li>
+        </ul>
+
+        <p>Total de livros: <span th:text="${livros.size()}"></span></p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>ISBN</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="livro : ${livros}">
+                    <td th:text="${livro.titulo}"></td>
+                    <td th:text="${livro.autor}"></td>
+                    <td th:text="${livro.isbn}"></td>
+                    <td>
+                        <a th:href="@{/livros/editar/{id}(id=${livro.id})}">Editar</a>
+                        |
+                        <a th:href="@{/livros/excluir/{id}(id=${livro.id})}"
+                           onclick="return confirm('Tem certeza que deseja excluir este livro?')">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
